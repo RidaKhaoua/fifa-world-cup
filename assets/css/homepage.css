@@ -217,7 +217,7 @@ a {
   background-image: url("../../assets/Images/background.png");
   background-size: cover;
   background-position: center;
-  border-radius: 20px;
+  border-radius: 22px;
   padding: 40px 20px;
 }
 @media (max-width: 767px) {
@@ -353,7 +353,7 @@ a {
 }
 .content__middle__left .matches-schedule .body-content {
   background-color: #FFFFFF;
-  border-radius: 20px;
+  border-radius: 22px;
   padding: 20px 0;
 }
 .content__middle__left .matches-schedule .body-content .row {
