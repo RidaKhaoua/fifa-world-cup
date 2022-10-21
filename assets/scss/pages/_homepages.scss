@@ -143,11 +143,12 @@
                     position: relative;
                     flex-wrap: wrap;
                     z-index: 1;
-                    border-radius: 6px;
-                    background-image: url("/assets/Images/bg.png");
+                    border-radius: 13px;
+                    
+                    background-image: url("/assets/Images/background.png");
                     background-size: cover;
                     background-position: center;
-                    border-radius: 10px;
+                    border-radius: 20px;
                 
                     padding:40px 20px;
                     @include breakpoints(mobile) {
@@ -318,7 +319,7 @@
                 }
                 .body-content {
                     background-color: $white-color;
-                    border-radius: 6px;
+                    border-radius: 20px;
                     padding: 20px 0;
                     .row {
                         @include flex(space-around, center);

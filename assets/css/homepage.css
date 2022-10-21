@@ -213,11 +213,11 @@ a {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   z-index: 1;
-  border-radius: 6px;
-  background-image: url("/assets/Images/bg.png");
+  border-radius: 13px;
+  background-image: url("/assets/Images/background.png");
   background-size: cover;
   background-position: center;
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 40px 20px;
 }
 @media (max-width: 767px) {
@@ -353,7 +353,7 @@ a {
 }
 .content__middle__left .matches-schedule .body-content {
   background-color: #FFFFFF;
-  border-radius: 6px;
+  border-radius: 20px;
   padding: 20px 0;
 }
 .content__middle__left .matches-schedule .body-content .row {
