@@ -1,0 +1,46 @@
+
+
+@mixin breakpoints($point) {
+    @if $point == mobile  {
+        @media (max-width:767px) {
+            @content
+        }
+    } @else if $point == small {
+        @media (min-width:768px) and (max-width:991px) {
+            @content
+        }
+    } @else if $point == medium {
+        @media (min-width:992px) and (max-width:1199px){
+            @content
+        }
+    } @else if $point == large {
+        @media (min-width:1200px) {
+            @content
+        }
+    }
+}
+
+@mixin keyF($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+@mixin flex($justify, $align) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-wrap: wrap;
+}
+
+
+@mixin  border-raduis($directionOne, $directiontwo, $size) {
+    border-#{$directionOne}-#{$directiontwo}-radius : $size
+}

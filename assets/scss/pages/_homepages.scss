@@ -1,0 +1,611 @@
+@use "../helpers/global";
+@use "../helpers/variables" as * ;
+@use "../helpers/mixins" as *;
+
+.page {
+    display: flex;
+    min-height: 100vh;
+}
+
+.content {
+    width: 100%;
+    background-color: $white-color;
+    &__head {
+        @include flex(space-between, center);
+        padding: 13px 20px;
+        background-color: $white-color;
+
+            &__logo__barmenu {
+                @include flex(center, center);
+                gap:10px;
+            .bar-menu {
+                cursor: pointer;
+                color: $grey-color;
+            }
+            .logo {
+                display: none;
+                width: 90px;
+                @include breakpoints("mobile") {
+                    display: block;
+                }
+
+                img {
+                    max-width: 100%;
+                }
+            }
+        }
+
+        &__search {
+            background-color: #eee;
+            border-radius: 50px;
+            padding: 8px 15px;
+            position: relative;
+            @include breakpoints("mobile") {
+                    display: none;
+                }
+            &::before {
+                font-family: "Font Awesome 6 Free";
+                content: "\f002";
+                font-weight: 900;
+                position: relative;
+                margin-right: 10px;
+            }
+            input {
+                border: none;
+                background-color: transparent;
+                &:focus {
+                    outline: none
+                }
+                &::placeholder {
+                    color: black;
+                    font-size: 14px;
+                }
+
+
+            }
+
+            
+        }
+
+        &__information {
+            @include flex(center, center);
+            gap: 18px;
+
+            div  {
+                cursor: pointer;
+                font-size: 22px;
+                color: #4e4e4e;
+            }
+
+            // .notification {
+            //         position: relative;
+                    
+            //         &::before {
+            //             content: "2";
+            //             position: absolute;
+            //             top: -3px;
+            //             right: -3px;
+            //             background-color: $red-color;
+            //             @include flex(center, center);
+            //             font-size: 9px;
+            //             color: $white-color;
+            //             height: 12px;
+            //             width: 12px;
+            //             border-radius: 6px;
+            //         }
+            //     }
+            
+            .languages {
+                select {
+                    border: none;
+                    font-size: 15px;
+                    outline: none;
+                    color: $grey-color;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    &__middle {
+        @include flex(flex-start,flex-start);
+        &__left {
+            width: 70%;
+            background-color: #eee;
+            border-radius: 20px;
+            padding: 15px 20px;
+
+            @include breakpoints("medium") {
+                width: 100%;
+            }
+
+
+            @include breakpoints ("mobile") {
+                width: 100%;
+            }
+
+            @include breakpoints("small") {
+                width: 100%;
+            }
+
+            
+
+            .content-feauterd {
+                .feauterd {
+                overflow: hidden;
+                margin-bottom: 10px;
+                .title {
+                    margin-bottom: 10px;
+                    }
+                
+                .body-content {
+                    display: flex;
+                    position: relative;
+                    flex-wrap: wrap;
+                    z-index: 1;
+                    border-radius: 6px;
+                    background-image: url("/assets/Images/bg.png");
+                    background-size: cover;
+                    background-position: center;
+                    border-radius: 10px;
+                
+                    padding:40px 20px;
+                    @include breakpoints(mobile) {
+                        padding: 0 15px;
+                        text-align: center;
+                    }
+                }
+
+                .annonce {
+                    width: 50%;
+                    color: white;
+                    padding: 20px 0;
+                    @include breakpoints("mobile") {
+                        padding: 60px 0px;
+                    }
+                    &__title {
+                        font-size: 28px;
+                        margin-bottom: 20px;
+                    }
+
+                    &__description {
+                        margin-bottom: 24px;
+                        line-height: 1.6;
+                        font-size: 13px;
+                    }
+
+                    &__link__readmore {
+                        a {
+                        background-color: $yellow-color;
+                        border-radius: 12px;
+                            padding: 10px 18px;
+                            color: #767676;
+                            font-size: 13px;
+                            font-weight: 600;
+                    }
+                    }
+
+                    @include breakpoints(mobile) {
+                        width: 100%;
+                    }
+                }
+
+                .players {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+
+                    width: 50%;
+                    
+                    @include breakpoints("mobile") {
+                        width: 100%;
+                    }
+
+                    @include breakpoints("small") {
+                        display: none;
+                    }
+
+                    img {
+                        position: absolute;
+                        top: -70px;
+                        max-width: 100%;
+
+                        @include breakpoints(mobile) {
+                            margin-top: 20px;
+                            position: relative;
+                            top: 40px;
+                        }
+                    }
+
+                    // img {
+                    //     width: 240px;
+                    //     height: 399px;
+                    //     position: absolute;
+                    //     z-index: -1;
+
+                    //     @include breakpoints("mobile") {
+                    //         position: relative;
+                    //         max-width: 220px;
+                    //         max-height: 250px;
+                    //         top: 80px !important;
+                    //     }
+
+                    //     &:first-of-type {
+                    //         top: -55px;
+                    //         right: 140px;
+
+                    //         @include breakpoints("mobile") {
+                    //             width: 200px;
+                    //             left: 125px;
+                    //         }
+                    //     }
+
+                    //     &:nth-of-type(2) {
+                    //         top: -54px;
+                    //         right: 19px;
+                    //         width: 318px;
+                    //         height: 500px;
+                    //         @include breakpoints("mobile") {
+                    //             width: 250px;
+                    //             height: 300px;
+                    //             left: 20px;
+                    //             right: 0;
+                    //         }
+                    //     }
+
+
+                    //     &:last-of-type {
+                    //         top: -56px;
+                    //         right: 0px;
+                    //         @include breakpoints("mobile") {
+                    //             right: 100px;
+                    //         }
+                    //     }
+
+                    // }
+                }
+                
+                .moving {
+                    position: absolute;
+                    bottom: 7px;
+                    left: 90%;
+                    @include breakpoints(mobile) {
+                        left: 50%;
+                        bottom: 10px;
+                        transform: translateX(-50%);
+                    }
+
+                    @include breakpoints (small) {
+                        left: 50%;
+                        transform: translateX(-50%);
+                    }
+                    img {
+                        width: 35px;
+                        transition: opacity 0.5s linear;
+                        &:hover {
+                            opacity: 0.7;
+                        }
+                    }
+                        
+                    cursor: pointer;
+                }
+
+                }
+                .navigation {
+                    @include flex(center, center);
+                    gap: 2px;
+                    width: 80px;
+                    margin: 0px auto 20px;
+                    div {
+                        width: 5px;
+                        height: 5px;
+                        background-color: $red-color-seconde;
+                        border-radius: 50%;
+
+                        &.active {
+                            flex: 1;
+                            border-radius: 10px;
+                            background-color: $red-color;
+                        }
+                    }
+                }
+            }
+            
+            .matches-schedule {
+                
+                .title {
+                    margin-bottom: 10px;
+                }
+                .body-content {
+                    background-color: $white-color;
+                    border-radius: 6px;
+                    padding: 20px 0;
+                    .row {
+                        @include flex(space-around, center);
+                        font-weight: 500;
+                        margin-bottom: 30px;
+                        
+                        .date {
+                                @include breakpoints("mobile") {
+                                    display: none;
+                                }
+                            }
+
+                        .time-match {
+                            @include flex(center, center);
+                            gap: 18px;
+                            @include breakpoints("mobile") {
+                                flex-wrap: nowrap;
+                                gap:10px;
+                            }
+                        
+                            .team {
+                                display: flex;
+                                align-items: center;
+                                gap: 8px;
+                                font-size: 14px;
+                                width: 152px;
+                                
+                                &.left {
+                                    justify-content: flex-end;
+                                }
+
+                                &.right {
+                                    justify-content: flex-start;
+                                }
+
+                            }
+
+                            .time {
+                                text-align: center;
+                                font-size: 13px;
+                            }
+
+                            img {
+                                width: 35px;
+                            }
+                        }
+
+                        .stade {
+                                width: 160px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                @include breakpoints("mobile") {
+                                    display: none;
+                                }
+                                span {
+                                    color: $red-color;
+                                    font-size: 14px;
+                                    font-weight: 700;
+                                }
+                            }
+                    }
+
+                    
+                
+                }
+                .view-all {
+                    text-align: center;
+                    a{
+                        color: $red-color;
+                        font-weight: 500;
+                        transition: color 0.5s linear;
+                    
+                        &:hover {
+                            opacity: 0.6;
+                        }
+                    }
+                    
+                }
+            }
+        }
+
+        &__right {
+            width: 25%;
+            padding: 15px 25px;
+            margin-top: 20px;
+            @include breakpoints(mobile) {
+                width: 100%;
+                padding: 20px;
+            }
+
+            @include breakpoints(small) {
+                width: 100%;
+            }
+
+            @include breakpoints(medium) {
+                width: 100%;
+            }
+
+
+            .title {
+                    sup {
+                        font-size: 10px;
+                    }
+            }
+
+            .description {
+                font-size: 12px;
+                font-weight: 500;
+            }
+
+            .countdown {
+                margin: 18px 0px;
+                .time {
+                    @include flex(space-between, center);
+                    
+                    @include breakpoints("mobile") {
+                        justify-content: space-evenly;
+                    }
+
+                    @include breakpoints(small) {
+                        justify-content: space-around;
+                    }
+                    @include breakpoints(medium) {
+                        justify-content: space-around;
+                    }
+
+                    margin-bottom: 20px;
+                    div {
+                        span {
+                            display: block;
+                            color: $red-color;
+                            text-align: center;
+                            font-weight: 500;
+                        &:first-of-type {
+                            font-size: 40px;
+                            font-weight: 700;
+                            }
+                        }
+                    
+                    }
+                }
+                .get-your-ticket {
+                    @include breakpoints(mobile) {
+                        text-align: center;
+                    }
+
+                    @include breakpoints(small) {
+                        text-align: center;
+                    }
+
+                    @include breakpoints(medium) {
+                        text-align: center;
+                    }
+                    a {
+                        color: $red-color;
+                        font-weight: 500;
+                        transition: opacity 0.4s linear;
+                        
+                        &:hover {
+                            opacity: 0.7;
+                        }
+                    
+                    }
+                }
+            }
+
+            .recent-news {
+                .title {
+                    margin-bottom: 10px;
+                }
+                
+                .box {
+                    margin-bottom: 18px;
+                    img {
+                        width: 100%;
+                        border-radius: 12px;
+                        object-fit: contain;
+                    }
+                    .date {
+                        font-size: 12px;
+                        color: $grey-color;
+                        margin-bottom: 8px;
+                    }
+                    .body-content {
+                        .title {
+                            margin-top: 0;
+                            margin-bottom: 6px;
+                        }
+
+                        .desc {
+                            color: $grey-color;
+                            font-size: 13px;
+                        }
+
+                    }
+                }
+                
+                .view-all {
+                    text-align: center;
+                    background-color: $red-color;
+                    border-radius: 15px;
+                    padding: 8px;
+                    transition: opacity 0.3s linear;
+                    
+                    &:hover {
+                        opacity: 0.7;
+                    }
+
+                    a {
+                        color: white;
+                    }
+                }
+            }
+        }
+        &__contries {
+            width: 5%;
+            padding: 10px;
+            background-color: $white-color;
+            @include breakpoints(mobile) {
+                display: none;
+            }
+            @include breakpoints(small) {
+                display: none;
+            }
+            @include breakpoints(medium) {
+                display: none;
+            }
+            img {
+                width: 35px;
+                display: block;
+                margin: auto;
+                margin-bottom: 36px;
+                cursor: pointer;
+                transition: 0.5s linear ;
+
+                @include keyF(bombe) {
+                    0% {
+                        transform: translateY(0px);
+                    }
+
+                    75% {
+                        transform: translateY(-3px);
+                    }
+
+                    100% {
+                        transform: translateY(0px);
+                    }
+                }
+
+            &:hover {
+                animation: bombe 0.9s linear infinite;
+            }
+
+
+            }
+
+        }
+       
+    }
+    &__footer {
+            @include flex(space-between, center);
+            padding: 15px 10px;
+            width: 95%;
+            
+            ul {
+                @include flex(center, center);
+
+
+                gap: 18px;
+                margin-bottom: 10px;
+
+                li a {
+                    color: $grey-color;
+                }
+
+            }
+            .logo {
+                padding-right: 30px;
+                @include breakpoints(mobile) {
+                    margin-top: 20px;
+                    width: 100%;
+                    text-align: center;
+                }
+                    img {
+                        width: 100px;
+                    }
+                }
+        }
+}
