@@ -1,0 +1,32 @@
+@use  "../helpers/variables" as *;
+@use "../helpers/mixins" as *;
+
+.footer {
+            @include flex(space-between, center);
+            padding: 15px 18px;
+            width: 95%;
+            
+            ul {
+                @include flex(center, center);
+
+
+                gap: 18px;
+                margin-bottom: 10px;
+
+                li a {
+                    color: $grey-color;
+                }
+
+            }
+            .logo {
+                padding-right: 30px;
+                @include breakpoints(mobile) {
+                    margin-top: 20px;
+                    width: 100%;
+                    text-align: center;
+                }
+                    img {
+                        width: 100px;
+                    }
+                }
+        }
