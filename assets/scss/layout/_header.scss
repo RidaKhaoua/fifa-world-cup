@@ -2,22 +2,37 @@
 @use "../helpers/mixins" as *;
 
 .sidebar {
-    box-shadow: 0 0 10px #ddd;
+    position: relative;
+    background-color: #fff;
     width: 70px;
     text-align: center;
     padding-top: 15px;
+    overflow: hidden;
     @include breakpoints("mobile") {
-        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        transform: translateX(-100%);
+        transition: 0.5s linear;
     }
+
     &.show {
-        display: block;
+        transform: translateX(0%);
     }
+
+    &.hidden {
+        width: 0;
+        transition: width 0.2s linear;
+        transform-origin: right top;
+    }
+
     &__logo {
         margin-bottom: 20px;
         img {
             max-width: 100%;
         }
     }
+
     &__nav {
         &__list {
             li {
@@ -52,5 +67,11 @@
                 }
             }
         }
+    }
+    &__logout {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
