@@ -96,46 +96,44 @@ class Ui {
   }
 
   hideTheCurrentElement() {
-    // remove The class Show from The current Element
-    this.annonces[this.compt].classList.remove("show");
-
-    // After 700ms Remove class Active  from The current Element
-    setTimeout(() => {
-      this.annonces[this.compt].classList.remove("active");
-    }, 700);
+    ui.annonces.forEach((item) => {
+      item.classList.remove("show");
+      setTimeout(() => {
+        item.classList.remove("active");
+      }, 700);
+    });
   }
 
-  showTheNextElement() {
+  showTheNextElement(index) {
     // After 700ms
     setTimeout(() => {
-      // increment Compteur
-      this.compt += 1;
-
       // set class active to make The element Takes Property block
-      this.annonces[this.compt].classList.add("active");
+      this.annonces[index].classList.add("active");
 
       // and After 700ms show The element
       setTimeout(() => {
-        this.annonces[this.compt].classList.add("show");
+        this.annonces[index].classList.add("show");
       }, 700);
 
-      if (this.compt === this.annonces.length - 1) {
+      if (index === this.annonces.length - 1) {
         // change the cursor from Pointer To no-allowed
         ui.changeCursorOfMoving(this.btnNext, "add");
       }
     }, 700);
   }
 
-    movingAnnonceNext() {
+  movingAnnonceNext() {
     let annoncesLength = this.annonces.length - 1;
-
     ui.changeCursorOfMoving(ui.btnPrev, "remove");
-
     if (this.compt < annoncesLength) {
-        this.hideTheCurrentElement();
-        this.showTheNextElement();
+      this.compt += 1;
+      this.hideTheCurrentElement();
+      this.removeActiveFromNavigationAnnonce(this.compt);
+      this.showTheNextElement(this.compt);
     }
+
   }
+
 
   movingAnnoncePrev() {
     ui.changeCursorOfMoving(this.btnNext, "remove");
@@ -143,12 +141,8 @@ class Ui {
       this.hideTheCurrentElement();
       setTimeout(() => {
         this.compt -= 1;
-        this.annonces[this.compt].classList.add("active");
-
-        setTimeout(() => {
-          this.annonces[this.compt].classList.add("show");
-        }, 700);
-
+        this.showTheNextElement(this.compt);
+        this.removeActiveFromNavigationAnnonce(this.compt);
         if (this.compt === 0) {
           ui.changeCursorOfMoving(this.btnPrev, "add");
         }
@@ -156,11 +150,13 @@ class Ui {
     }
   }
 
-  removeActiveFromNavigationAnnonce() {
+  removeActiveFromNavigationAnnonce(index) {
     const elementNavActive = document.querySelector(
       ".content .content__middle__left .navigation div.active"
     );
     elementNavActive.classList.remove("active");
+    this.pointNavigationAnnonce[index].classList.add("active");
+
   }
 
   changeCursorOfMoving(btn, propClassName) {
@@ -181,6 +177,24 @@ class Ui {
         break;
       default:
         break;
+    }
+  }
+
+  checkingIfTheFirstAnnoceShowedOrTheLast(indexOfCrurrentElemnt) {
+    /**
+     * this code for change the cursor of the button next and prev
+     * into not-allow when the first annonce showed or the last
+     */
+    if (+indexOfCrurrentElemnt.dataset.index === this.annonces.length - 1) {
+      ui.changeCursorOfMoving(ui.btnNext, "add");
+    } else {
+      ui.changeCursorOfMoving(ui.btnNext, "remove");
+    }
+
+    if (+indexOfCrurrentElemnt.dataset.index === 0) {
+      ui.changeCursorOfMoving(ui.btnPrev, "add");
+    } else {
+      ui.changeCursorOfMoving(ui.btnPrev, "remove");
     }
   }
 }
@@ -205,53 +219,27 @@ document.body.addEventListener("click", function (e) {
     } 
 })
 
-ui.btnNext.addEventListener("click", function (params) {
+ui.btnNext.addEventListener("click", function () {
     ui.movingAnnonceNext();
 })
 
-ui.btnPrev.addEventListener("click", function name(params) {
+ui.btnPrev.addEventListener("click", function () {
     ui.movingAnnoncePrev();
 })
 
 
 ui.pointNavigationAnnonce.forEach((item) =>  {
     item.addEventListener("click", function (params) {
-    
-        ui.removeActiveFromNavigationAnnonce();
-    
-        this.classList.add("active");
-        
-        if (+this.dataset.index === ui.annonces.length - 1) {
-            ui.changeCursorOfMoving(ui.btnNext, "add");
-        } else {
-            ui.changeCursorOfMoving(ui.btnNext, "remove");
-        }
+        ui.compt = +this.dataset.index;
+        ui.removeActiveFromNavigationAnnonce(this.dataset.index);
+        ui.checkingIfTheFirstAnnoceShowedOrTheLast(this);
 
-        if(+this.dataset.index === 0) {
-            ui.changeCursorOfMoving(ui.btnPrev, "add");
-        } else {
-            ui.changeCursorOfMoving(ui.btnPrev, "remove");
-        }
-        })
+        ui.hideTheCurrentElement();
+        ui.showTheNextElement(this.dataset.index)
+        
+    })
+
 })
 
-/**
- *  
-        ui.compt = +this.dataset.index;
-        
-        ui.annonces.forEach(item => {
-            item.classList.remove("show");
-            setTimeout(() => {
-                item.classList.remove("active");
-            }, 700);
-        });
 
-        setTimeout(() => {
-            ui.annonces[this.dataset.index].classList.add("active");
 
-            setTimeout(() => {
-                ui.annonces[this.dataset.index].classList.add("show");
-            }, 700);
-            
-        }, 700);
- */
