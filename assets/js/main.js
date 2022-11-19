@@ -38,7 +38,7 @@ class Ui {
   }
 
   countDown() {
-    let dateFifaCup = new Date("Nov 22, 2022").getTime();
+    let dateFifaCup = new Date("Nov 20, 2022 05:00:00").getTime();
 
     let counter = setInterval(() => {
       const millseconde = 1000;
